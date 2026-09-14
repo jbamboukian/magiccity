@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Magic City</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html" class="brand" aria-label="Magic City — Home">
+      <svg class="nav-logo" viewBox="0 0 400 120" role="img" aria-label="Magic City">
+        <title>Magic City</title>
+        <g transform="translate(22 18) scale(0.84)">
+          <path fill="#0B2545" fill-rule="evenodd" d="M50 3 L97 50 L50 97 L3 50 Z M50 17 L56.5 43.5 L83 50 L56.5 56.5 L50 83 L43.5 56.5 L17 50 L43.5 43.5 Z"></path>
+        </g>
+        <text x="128" y="59" fill="#0B2545" font-family="Manrope, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="36" letter-spacing="7.6">MAGIC CITY</text>
+        <text x="130" y="86" fill="#1D63D1" font-family="Manrope, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="12" letter-spacing="4.8">EST. 2025</text>
+      </svg>
+    </a>
+    <ul class="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="contact.html" class="cta active">Contact</a>
+        <div class="dropdown-panel">
+          <div class="row"><span class="label">Email</span><a class="value" href="mailto:jbamboukian99@gmail.com">jbamboukian99@gmail.com</a></div>
+          <div class="row"><span class="label">Phone</span><a class="value" href="tel:+96170124567">+961 70 124 567</a></div>
+          <div class="row"><span class="label">Based In</span><span class="value">Lebanon</span></div>
+          <div class="row"><span class="label">Response Time</span><span class="value">Same Day!</span></div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding-bottom: 0;">
+  <div class="wrap" style="padding-top: 70px; padding-bottom: 40px;">
+    <h1 style="max-width: 16ch;">Tell us about the shoot. We'll tell you what it takes.</h1>
+    <p class="lede" style="margin-top:18px;">First calls run thirty minutes. If it's a fit, you'll have a scope and quote within a few days.</p>
+  </div>
+</section>
+
+<div class="wrap contact-grid">
+
+  <div>
+    <div class="contact-block">
+      <h3>Email</h3>
+      <p><a href="mailto:jbamboukian99@gmail.com">jbamboukian99@gmail.com</a></p>
+    </div>
+    <div class="contact-block">
+      <h3>Phone</h3>
+      <p><a href="tel:+96170124567">+961 70 124 567</a></p>
+    </div>
+    <div class="contact-block">
+      <h3>Based in</h3>
+      <p>Lebanon</p>
+    </div>
+    <div class="contact-block">
+      <h3>Response time</h3>
+      <p>Same day!</p>
+    </div>
+  </div>
+
+  <div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="company">Brand / company</label>
+      <input type="text" id="company" name="company" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Reason for inquiry</label>
+      <textarea id="message" name="message" required placeholder="Timeline, location, deliverables — whatever you've got so far."></textarea>
+
+      <button type="submit" class="btn">Send inquiry</button>
+    </form>
+    <p id="formNote" class="small" style="margin-top:16px; color: var(--grey); display:none;">Thanks — this is a demo form with no backend connected yet. Wire it up to your email service to start receiving real inquiries.</p>
+  </div>
+
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="small">© 2026 Magic City Productions</div>
+    <ul class="flinks">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('formNote').style.display = 'block';
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
