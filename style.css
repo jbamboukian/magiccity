@@ -107,6 +107,33 @@ nav.wrap {
   color: #fff;
 }
 
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease, width .2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 100%; }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 100%; }
+
 .navlinks .dropdown { position: relative; }
 
 .dropdown-panel {
@@ -758,7 +785,55 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .about-split { grid-template-columns: 1fr; }
   .project-body { grid-template-columns: 1fr; gap: 30px; }
   .contact-grid { grid-template-columns: 1fr; gap: 20px; }
-  .navlinks { display: none; }
   .wrap { padding: 0 22px; }
   .cta-strip { margin: 0 22px; padding: 40px 26px; }
+
+  .nav-toggle { display: flex; }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 84px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 34px rgba(11,37,69,0.14);
+    padding: 8px 22px 24px;
+  }
+
+  .navlinks.open { display: flex; }
+
+  .navlinks li { width: 100%; }
+
+  .navlinks a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+  }
+
+  .navlinks li:last-child a { border-bottom: none; }
+
+  .navlinks .cta {
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 3px;
+  }
+
+  .navlinks .dropdown-panel { display: none; }
+}
+
+/* narrower phones */
+@media (max-width: 640px) {
+  .clip-gallery { flex-direction: column; max-width: 100%; }
+  .clip-thumb { margin: 0 0 20px; }
+  .clip-side { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .pin { width: 128px; height: 56.5px; }
 }
