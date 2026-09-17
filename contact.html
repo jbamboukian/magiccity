@@ -87,7 +87,7 @@
 
       <button type="submit" class="btn">Send inquiry</button>
     </form>
-    <p id="formNote" class="small" style="margin-top:16px; color: var(--grey); display:none;">Thanks — this is a demo form with no backend connected yet. Wire it up to your email service to start receiving real inquiries.</p>
+    <p id="formNote" class="small" style="margin-top:16px; color: var(--grey); display:none;">Opening your email app with this inquiry pre-filled — hit send there to reach us. If nothing opens, email <a href="mailto:jbamboukian99@gmail.com">jbamboukian99@gmail.com</a> or call <a href="tel:+96170124567">+961 70 124 567</a> directly.</p>
   </div>
 
 </div>
@@ -106,8 +106,26 @@
 <script>
 function handleSubmit(e) {
   e.preventDefault();
+  var form = e.target;
+  var name = form.name.value.trim();
+  var company = form.company.value.trim();
+  var email = form.email.value.trim();
+  var message = form.message.value.trim();
+
+  var subject = 'New inquiry from ' + name + ' (' + company + ')';
+  var body =
+    'Name: ' + name + '\n' +
+    'Brand / company: ' + company + '\n' +
+    'Email: ' + email + '\n\n' +
+    message;
+
+  var mailto = 'mailto:jbamboukian99@gmail.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+
   document.getElementById('formNote').style.display = 'block';
-  e.target.reset();
+  window.location.href = mailto;
+  form.reset();
 }
 </script>
 
