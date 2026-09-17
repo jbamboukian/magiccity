@@ -85,9 +85,9 @@
       <label for="message">Reason for inquiry</label>
       <textarea id="message" name="message" required placeholder="Timeline, location, deliverables — whatever you've got so far."></textarea>
 
-      <button type="submit" class="btn">Send inquiry</button>
+      <button type="submit" class="btn" id="formSubmitBtn">Send inquiry</button>
     </form>
-    <p id="formNote" class="small" style="margin-top:16px; color: var(--grey); display:none;">Opening your email app with this inquiry pre-filled — hit send there to reach us. If nothing opens, email <a href="mailto:jbamboukian99@gmail.com">jbamboukian99@gmail.com</a> or call <a href="tel:+96170124567">+961 70 124 567</a> directly.</p>
+    <p id="formNote" class="small" style="margin-top:16px; color: var(--grey); display:none;"></p>
   </div>
 
 </div>
@@ -107,25 +107,43 @@
 function handleSubmit(e) {
   e.preventDefault();
   var form = e.target;
+  var note = document.getElementById('formNote');
+  var btn = document.getElementById('formSubmitBtn');
+
   var name = form.name.value.trim();
   var company = form.company.value.trim();
   var email = form.email.value.trim();
   var message = form.message.value.trim();
 
-  var subject = 'New inquiry from ' + name + ' (' + company + ')';
-  var body =
-    'Name: ' + name + '\n' +
-    'Brand / company: ' + company + '\n' +
-    'Email: ' + email + '\n\n' +
-    message;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
 
-  var mailto = 'mailto:jbamboukian99@gmail.com'
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body=' + encodeURIComponent(body);
-
-  document.getElementById('formNote').style.display = 'block';
-  window.location.href = mailto;
-  form.reset();
+  fetch('https://formsubmit.co/ajax/jbamboukian99@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      company: company,
+      email: email,
+      message: message,
+      _subject: 'New inquiry from ' + name + ' (' + company + ')'
+    })
+  })
+  .then(function (res) { return res.ok ? res.json() : Promise.reject(res); })
+  .then(function (data) {
+    if (String(data.success) !== 'true') return Promise.reject(data);
+    note.textContent = 'Thanks — your inquiry is in. We\'ll be in touch shortly.';
+    note.style.display = 'block';
+    form.reset();
+  })
+  .catch(function () {
+    note.innerHTML = 'Something went wrong sending that. Please email <a href="mailto:jbamboukian99@gmail.com">jbamboukian99@gmail.com</a> or call <a href="tel:+96170124567">+961 70 124 567</a> directly.';
+    note.style.display = 'block';
+  })
+  .finally(function () {
+    btn.disabled = false;
+    btn.textContent = 'Send inquiry';
+  });
 }
 </script>
 
