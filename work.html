@@ -43,15 +43,24 @@
   </nav>
 </header>
 
-<section class="hero" style="padding-bottom: 70px;">
+<section class="hero" style="padding-bottom: 40px;">
   <div class="wrap" style="padding-top: 70px;">
     <h1 style="max-width: 16ch;">Campaign Portfolio</h1>
   </div>
 </section>
 
+<section class="wrap" style="padding-top:0; padding-bottom:0;">
+  <div class="filter-row" role="tablist" aria-label="Filter work by brand">
+    <button class="filter-chip active" data-filter="all" type="button">All</button>
+    <button class="filter-chip" data-filter="newbalance-alsadd" type="button">New Balance X Al Sadd FC</button>
+    <button class="filter-chip" data-filter="ferrero" type="button">Ferrero Rocher</button>
+    <button class="filter-chip" data-filter="al-futtaim" type="button">Al Futtaim Automotive</button>
+  </div>
+</section>
+
 <section class="rule-top wrap">
   <div class="work-grid">
-    <a href="work-alsadd-polo.html" class="work-card">
+    <a href="work-alsadd-polo.html" class="work-card" data-brand="newbalance-alsadd">
       <div class="thumb">
         <span class="frame-num">F.01</span>
         <img src="images/alsadd-polo-hero.jpg" alt="New Balance × Al Sadd FC 2026 polo kit" loading="lazy">
@@ -62,7 +71,7 @@
         <p>Campaign imagery produced for the reveal of Al Sadd's 2026 New Balance polo kit.</p>
       </div>
     </a>
-    <a href="work-alsadd-brozovic.html" class="work-card">
+    <a href="work-alsadd-brozovic.html" class="work-card" data-brand="newbalance-alsadd">
       <div class="thumb">
         <span class="frame-num">F.02</span>
         <img src="images/alsadd-brozovic-hero.jpg" alt="Marcelo Brozović player reveal for Al Sadd FC" loading="lazy">
@@ -73,7 +82,7 @@
         <p>Reveal shoot produced for Marcelo Brozović's signing with Al Sadd FC.</p>
       </div>
     </a>
-    <a href="work-alsadd-home.html" class="work-card">
+    <a href="work-alsadd-home.html" class="work-card" data-brand="newbalance-alsadd">
       <div class="thumb">
         <span class="frame-num">F.03</span>
         <img src="images/alsadd-home-2026.jpg" alt="New Balance × Al Sadd FC 2026 home kit" loading="lazy">
@@ -84,7 +93,7 @@
         <p>Campaign imagery produced for the reveal of Al Sadd's 2026 New Balance home kit.</p>
       </div>
     </a>
-    <a href="work-alsadd-romagnoli.html" class="work-card">
+    <a href="work-alsadd-romagnoli.html" class="work-card" data-brand="newbalance-alsadd">
       <div class="thumb">
         <span class="frame-num">F.04</span>
         <img src="images/alsadd-romagnoli-hero.jpg" alt="Alessio Romagnoli player reveal for Al Sadd FC" loading="lazy">
@@ -95,7 +104,7 @@
         <p>Reveal shoot produced for Alessio Romagnoli's signing with Al Sadd FC.</p>
       </div>
     </a>
-    <a href="work-alsadd-away.html" class="work-card">
+    <a href="work-alsadd-away.html" class="work-card" data-brand="newbalance-alsadd">
       <div class="thumb">
         <span class="frame-num">F.05</span>
         <img src="images/alsadd-away-2026.jpg" alt="New Balance × Al Sadd FC 2026 away kit" loading="lazy" style="object-position: center 12%;">
@@ -106,7 +115,7 @@
         <p>Campaign imagery produced for the reveal of Al Sadd's 2026 New Balance away kit.</p>
       </div>
     </a>
-    <a href="work-al-futtaim.html" class="work-card">
+    <a href="work-al-futtaim.html" class="work-card" data-brand="al-futtaim">
       <div class="thumb">
         <span class="frame-num">F.06</span>
         <img src="images/al-futtaim-2025.jpg" alt="Al Futtaim Automotive on-site production" loading="lazy">
@@ -117,7 +126,7 @@
         <p>On-location shoot covering Al Futtaim Automotive's equipment and operations.</p>
       </div>
     </a>
-    <div class="work-card">
+    <div class="work-card" data-brand="ferrero">
       <div class="thumb">
         <span class="frame-num">F.07</span>
         <img src="images/kinder-jom-2025.jpg" alt="Kinder Joy of Moving program" loading="lazy">
@@ -130,6 +139,25 @@
     </div>
   </div>
 </section>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = document.querySelectorAll('.work-card');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      var filter = chip.getAttribute('data-filter');
+      cards.forEach(function (card) {
+        var brands = (card.getAttribute('data-brand') || '').split(' ');
+        var show = filter === 'all' || brands.indexOf(filter) !== -1;
+        card.classList.toggle('is-hidden', !show);
+      });
+    });
+  });
+})();
+</script>
 
 <section class="rule-top wrap">
   <div class="section-head">
