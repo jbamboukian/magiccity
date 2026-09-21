@@ -457,6 +457,73 @@ section { padding: 90px 0; }
 
 .section-head p { margin-top: 18px; font-size: 17px; max-width: 52ch; }
 
+.section-head .eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+
+/* services roadmap */
+.roadmap-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 40px;
+}
+
+.roadmap {
+  position: relative;
+  display: flex;
+  gap: 24px;
+}
+
+.roadmap-track {
+  position: absolute;
+  top: 23px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--line) 0%, var(--blue) 50%, var(--line) 100%);
+  z-index: 0;
+}
+
+.roadmap-stop {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.roadmap-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 0 0 6px #fff;
+  margin-bottom: 22px;
+}
+
+.roadmap-stop:nth-child(3) .roadmap-node,
+.roadmap-stop:nth-child(5) .roadmap-node { background: var(--blue); }
+
+.roadmap-stop h3 { font-size: 18px; }
+.roadmap-stop p { margin-top: 8px; font-size: 15px; color: var(--grey); max-width: 26ch; }
+
 /* featured work */
 .feature {
   display: grid;
@@ -870,6 +937,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .feature { grid-template-columns: 1fr; padding: 30px; }
   .work-grid { grid-template-columns: 1fr; }
   .process { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+  .roadmap { flex-direction: column; gap: 36px; }
+  .roadmap-track {
+    top: 0; bottom: 0; left: 22px; right: auto;
+    width: 2px; height: auto;
+    background: linear-gradient(180deg, var(--line) 0%, var(--blue) 50%, var(--line) 100%);
+  }
+  .roadmap-stop { flex-direction: row; align-items: flex-start; gap: 20px; }
+  .roadmap-node { margin-bottom: 0; flex-shrink: 0; }
+  .roadmap-stop p { max-width: none; }
   .about-split { grid-template-columns: 1fr; }
   .project-body { grid-template-columns: 1fr; gap: 30px; }
   .contact-grid { grid-template-columns: 1fr; gap: 20px; }
