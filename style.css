@@ -682,20 +682,40 @@ section { padding: 90px 0; }
 
 /* process */
 .process {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 6px;
 }
 
 .stage {
-  background: var(--blue);
-  border-radius: 20px;
-  padding: 32px 26px;
+  flex: 1 1 220px;
+  min-width: 220px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
 }
 
-.stage .num { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75); display: block; margin-bottom: 12px; }
-.stage h3 { font-size: 18px; color: #fff; }
-.stage p { margin-top: 8px; font-size: 15px; color: rgba(255,255,255,0.9); }
+.stage:hover {
+  border-color: var(--blue);
+  box-shadow: 0 12px 26px rgba(29,99,209,0.14);
+  transform: translateY(-2px);
+}
+
+.stage .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 14px;
+}
+.stage h3 { font-size: 18px; color: var(--navy); }
+.stage p { margin-top: 8px; font-size: 15px; color: var(--grey); }
 
 /* about split */
 .about-split {
@@ -936,7 +956,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .hero-lockup { padding: 70px 0; }
   .feature { grid-template-columns: 1fr; padding: 30px; }
   .work-grid { grid-template-columns: 1fr; }
-  .process { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+  .stage { flex: 0 0 78%; min-width: 220px; }
   .roadmap { flex-direction: column; gap: 36px; }
   .roadmap-track {
     top: 0; bottom: 0; left: 22px; right: auto;
